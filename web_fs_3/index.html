@@ -394,8 +394,25 @@
             })
             .then(datax => {
                 alert("mensaje: " + datax["message"])
-                console.log(datax);
-                
+
+
+                // Crear objeto URLSearchParams con los datos a enviar
+                const queryParams = new URLSearchParams({
+                    destino: detalles[destino][servicio],
+                    hora: horaSeleccionada,
+                    nombre: name,
+                    email: correo,
+                    celular: telefono,
+                    precio: precio,
+                    salida: 'cancún'
+                });
+
+                // Crear la URL de destino y agregar los parámetros de consulta
+                const url = `gracias.html?${queryParams.toString()}`;
+
+                // Redirigir al usuario a la página de destino
+                window.location.replace(url);
+
 
 
             });
