@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consumir Api</title>
+    <meta name="description" content="Ejercicio 2 del examen practico donde se consume una api">
+    <meta name="keywords" content="api, consumir api, api restful">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="css/style.css">
+    <!--iconos-->
+    <script src="https://kit.fontawesome.com/d197c49402.js" crossorigin="anonymous"></script>
+
+
+  </head>
+</head>
+
+<body>
+
+  <h1 class="text-center mb-1">LISTA DE USUARIOS</h1>
+
+  <div class="card ">
+    <div class="d-flex row space-between">
+      <a class="btn-primary " href="#" id="btn-ascendente">Ascendente</a>
+      <a class="btn bg-danger " href="#" id="btn-descendente">Descendente</a>
+      <a class="btn bg-green " href="#" id="btn-card">vista cards</a>
+      <a class="btn bg-violet " href="#" id="btn-tabla">vista tabla</a>
+    </div>
+
+    <div id="contenedor" class="table-responsive ">
+
+    </div>
+
+  </div>
+
+
+
+  <div id="modal" class="modal">
+
+  </div>
+
+
+
+</body>
+
+</html>
+
+<script src="js/tabla.js"></script>
+<script src="js/ordenar.js"></script>
+<script src="js/verInfo.js"></script>
+<script src="js/cards.js"></script>
+<script>
+  // Obtener los elementos HTML
+
+  const btnAscendente = document.getElementById('btn-ascendente');
+  const btnDescendente = document.getElementById('btn-descendente');
+  const contenedor = document.getElementById("contenedor");
+  const btnCards = document.getElementById('btn-card');
+  const btnTabla = document.getElementById('btn-tabla');
+
+  // Obtener los datos del API
+  fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(data => {
+      // Guardar los datos en una variable
+      let usuarios = data;
+      let vistaActual = 'tabla'; // Inicializar la vista en tabla
+
+      // Renderizar la tabla con los datos iniciales
+      if (vistaActual == "tabla") {
+        renderizarTabla(usuarios); // Actualizar la tabla
+      } else {
+        renderizarCards(usuarios);
+      }
+
+      // Agregar el EventListener para ordenar ascendente
+      btnAscendente.addEventListener('click', () => {
+        usuarios = ordenarUsuariosPorNombre(usuarios, 'ascendente');
+        if (vistaActual == "tabla") {
+          renderizarTabla(usuarios); // Actualizar la tabla
+        } else {
+          renderizarCards(usuarios);
+        }
+
+
+        agregarEventoVerInfo(usuarios);
+      });
+
+      // Agregar el EventListener para ordenar descendente
+      btnDescendente.addEventListener('click', () => {
+        usuarios = ordenarUsuariosPorNombre(usuarios, 'descendente');
+
+        if (vistaActual == "tabla") {
+          renderizarTabla(usuarios); // Actualizar la tabla
+        } else {
+          renderizarCards(usuarios);
+        }
+
+        agregarEventoVerInfo(usuarios);
+      });
+      // Agregar el EventListener para crear las cards
+      btnCards.addEventListener('click', () => {
+        vistaActual = 'cards'; // Actualizar la vista actual
+        renderizarCards(usuarios); // Actualizar la tabla
+        agregarEventoVerInfo(usuarios);
+      });
+
+      // Agregar el EventListener para crear las tabla
+      btnTabla.addEventListener('click', () => {
+
+        vistaActual = 'tabla'; // Actualizar la vista actual
+
+        renderizarTabla(usuarios); // Actualizar la tabla
+        agregarEventoVerInfo(usuarios);
+      });
+
+
+      console.log(usuarios)
+
+    })
+    .catch(error => console.error(error));
+
+
+// Seleccionar todos los enlaces "Ver información"
+
+
+
+</script>

@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulario de viajes</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<style>
+    /* Tema por defecto */
+    body {
+        background-color: #f5f5f5;
+
+    }
+
+    /* Tema DARK */
+    .dark {
+        background-color: #393939;
+        color: #a3a2a2;
+    }
+
+    .card-dark {
+
+        background-color: #202123 !important;
+    }
+</style>
+
+<body>
+
+    <div class="container px-md-5 pt-4 mb-5">
+
+        <h1 class="mb-4">Viajes</h1>
+        <div class="container px-md-5 ">
+            <div class="card mx-md-5">
+                <h4 class="card-header bg-primary text-light">Formulario de viaje</h4>
+                <div id="card" class="card-body px-md-5">
+                    <!----------------formulario rutas---------------------->
+                    <form id="ruta">
+                        <!----------------destino---------------------->
+                        <h4 class="mb-3">Destino</h4>
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="salida" value="Cancún" disabled>
+                                    <label for="floatingInput"> Campo origen</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" id="destino">
+                                        <option value="0" selected> Selecciona tu destino</option>
+                                        <option value="1">Isla mujeres</option>
+                                        <option value="2">Cozumel</option>
+                                        <option value="3">Holbox</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Destino</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!----------------Servicio---------------------->
+                        <h4 class="mb-3">Servicio</h4>
+                        <div class="row ">
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" id="servicio">
+                                        <option value="0" selected>Selecciona forma de viaje</option>
+                                        <option value="1"> Privado</option>
+                                        <option value="2">Lujo</option>
+
+                                    </select>
+                                    <label for="floatingSelectGrid">Servicio</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control " id="total" value="$$$" disabled>
+                                    <label for="floatingInput"> Total</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--horario---------------->
+
+                        <h4 class="mb-3">Horario</h4>
+                        <div class="row ">
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="time" id="hora" class="form-control" name="hora">
+                                    <label for="floatingInput"> Horario</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <a href="#" id="continuar" class="btn btn-primary container-fluid">Continuar</a>
+                            </div>
+                        </div>
+
+
+                    </form>
+                    <!----------------formulario reserva---------------------->
+                    <form id="reservacion" class="d-none mb-4">
+
+                        <h4 id="titulo" class="mb-3 mt-3">Reservación</h4>
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="text" class="form-control" placeholder="Nombre" id="nombre">
+                                    <label for="floatingInput">Nombre</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" type="email"
+                                        placeholder="ejemplo@email.com" class="form-control" id="correo" required>
+                                    <label for="floatingInput">email</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!----------------reservar---------------------->
+
+
+                        <div class="row ">
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input type="number" id="celular" placeholder=" celular" class="form-control"
+                                        name="hora">
+                                    <label for="floatingInput">celular</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <a href="#" id="reservar" class="btn btn-primary container-fluid">Reservar</a>
+                            </div>
+                        </div>
+
+
+                    </form>
+
+
+                    <div class="resumen d-none mb-5" id="detalles">
+
+                        <!-----Detalles de la reserva------->
+
+                        <!----------------destino---------------------->
+                        <h4 class="mb-3">Destino</h4>
+                        <div class="row ">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control" id="salidaDetalle" value="Cancún" disabled>
+                                    <label for="floatingInput"> Campo origen</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" id="destinoDetalle" disabled>
+                                        <option value="0" selected> Selecciona tu destino</option>
+                                        <option value="1">Isla mujeres</option>
+                                        <option value="2">Cozumel</option>
+                                        <option value="3">Holbox</option>
+                                    </select>
+                                    <label for="floatingSelectGrid">Destino</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!----------------Servicio---------------------->
+                        <h4 class="mb-3">Servicio</h4>
+                        <div class="row ">
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <select class="form-select" id="servicioDetalle" disabled>
+                                        <option value="0" selected>Selecciona forma de viaje</option>
+                                        <option value="1"> Privado</option>
+                                        <option value="2">Lujo</option>
+
+                                    </select>
+                                    <label for="floatingSelectGrid">Servicio</label>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-floating mb-3">
+                                    <input type="email" class="form-control " id="totalDetalle" value="$$$" disabled>
+                                    <label for="floatingInput"> Total</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--horario---------------->
+
+                        <h4 class="mb-3">Horario</h4>
+                        <div class="row ">
+
+                            <div class="col-md-6">
+                                <div class="form-floating">
+                                    <input disabled type="time" id="horaDetalle" class="form-control" name="hora">
+                                    <label for="floatingInput"> Horario</label>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <a href="#" id="reservarFinal" class="btn btn-primary container-fluid">Reservar</a>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    </div>
+</body>
+
+</html>
+
+
+<script>
+    const detalles = {
+        1: {
+            1: 'Isla Mujeres - Privado',
+            2: 'Isla Mujeres - Lujo'
+        },
+        2: {
+            1: 'Cozumel - Privado',
+            2: 'Cozumel - Lujo'
+        },
+        3: {
+            1: 'Holbox - Privado',
+            2: 'Holbox - Lujo'
+        }
+    };
+
+
+    const precios = {
+        "1": {
+            "1": 45, // Isla Mujeres - Privado
+            "2": 75 // Isla Mujeres - Lujo
+        },
+        "2": {
+            "1": 80, // Cozumel - Privado
+            "2": 120 // Cozumel - Lujo
+        },
+        "3": {
+            "1": 130, // Holbox - Privado
+            "2": 200 // Holbox - Lujo
+        }
+    };
+
+
+
+    let destino;
+    let servicio;
+    let horaSeleccionada;
+    let name;
+    let correo;
+    let telefono;
+    let precio
+    const horaInput = document.getElementById("hora");
+    const botonContinuar = document.getElementById('continuar');
+    const botonReservar = document.getElementById("reservar")
+    const botonFinalReserva = document.getElementById("reservarFinal");
+
+    // Función para actualizar el campo de TOTAL
+    const actualizarTotal = () => {
+        destino = document.getElementById("destino").value;
+        servicio = document.getElementById("servicio").value;
+
+        if (destino === "0" || servicio === "0") {
+
+            return; // no se actualiza el total si no se ha seleccionado un destino o servicio
+        }
+
+        precio = precios[destino][servicio];
+        document.getElementById("total").value = `$${precio}USD`;
+    }
+
+    // Agregar listeners a los campos de destino y servicio
+    document.getElementById("destino").addEventListener("change", actualizarTotal);
+    document.getElementById("servicio").addEventListener("change", actualizarTotal);
+
+
+    horaInput.addEventListener("change", () => {
+        horaSeleccionada = horaInput.value;
+        const esHorarioNoche = horaSeleccionada >= "20:00";
+        const body = document.querySelector("body");
+        const card = document.getElementById("card")
+
+
+        if (esHorarioNoche) {
+            body.classList.add("dark");
+            card.classList.add("card-dark")
+
+
+        } else {
+            body.classList.remove("dark");
+        }
+    });
+
+
+    botonContinuar.addEventListener('click', () => {
+        const form = document.getElementById('ruta');
+        const inputs = form.querySelectorAll('input, select');
+
+
+        validarInputs(inputs);
+
+        // Verificar si todos los campos son válidos
+        const formularioValido = Array.from(inputs).every(input => input.value && input.value !== "0");
+
+        // Si el formulario es válido, ocultar el formulario
+        if (formularioValido) {
+            document.getElementById('ruta').style.display = 'none';
+            document.getElementById('reservacion').classList.remove("d-none")
+        }
+    });
+
+
+    botonReservar.addEventListener('click', () => {
+        const formReserva = document.getElementById('reservacion');
+        const nombre = document.getElementById('nombre');
+        const formDetalles = document.getElementById('detalles');
+        const inputs = formReserva.querySelectorAll('input');
+        const email = formReserva.querySelector('input[type="email"]');
+        const celular = formReserva.querySelector('input[type="number"]');
+        const regexTelefono = /^\d{10}$/;
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // Verificar si todos los campos son válidos
+        validarInputs(inputs);
+        email.classList.toggle('is-invalid', !regex.test(email.value));
+        celular.classList.toggle('is-invalid', !regexTelefono.test(celular.value));
+
+
+        const formularioValido = Array.from(inputs).every(input => input.value && input.value !== "0" && regex.test(email.value) && regexTelefono.test(celular.value));
+        // Si el formulario es válido, ocultar el formulario
+        if (formularioValido) {
+            correo = email.value;
+            telefono = celular.value;
+            name = nombre.value;
+            document.getElementById('titulo').textContent = "Detalles reservación";
+            formDetalles.classList.remove("d-none")
+
+            botonReservar.classList.add("d-none")
+            email.disabled = true;
+            celular.disabled = true;
+            nombre.disabled = true
+            llenarDetallesReserva(destino, servicio, `$${precio}USD`, horaSeleccionada);
+
+
+        }
+
+    });
+
+
+
+    botonFinalReserva.addEventListener("click", () => {
+        const datos = new FormData();
+        datos.append("destino", destino);
+        datos.append("servicio", servicio);
+        datos.append("hora", horaSeleccionada);
+        datos.append("nombre", name);
+        datos.append("email", correo);
+        datos.append("celular", telefono);
+        datos.append("precio", precio);
+        datos.append("salida", "cancún");
+        console.log(name + correo + telefono)
+
+        fetch('php/inserciones.php', {
+            method: 'POST',
+
+            body: datos
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Error en la respuesta del servidor');
+                }
+                return response.json();
+            })
+            .then(datax => {
+                alert("mensaje: " + datax["message"])
+                console.log(datax);
+                // hacer algo con los datos recibidos
+  
+                const data = JSON.stringify({
+  to: [
+    {
+      email: 'john_doe@example.com',
+      name: 'John Doe'
+    }
+  ],
+  cc: [
+    {
+      email: 'jane_doe@example.com',
+      name: 'Jane Doe'
+    }
+  ],
+  bcc: [
+    {
+      email: 'james_doe@example.com',
+      name: 'Jim Doe'
+    }
+  ],
+  from: {
+    email: 'sales@example.com',
+    name: 'Example Sales Team'
+  },
+  attachments: [
+    {
+      content: 'PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KCiAgICA8aGVhZD4KICAgICAgICA8bWV0YSBjaGFyc2V0PSJVVEYtOCI+CiAgICAgICAgPG1ldGEgaHR0cC1lcXVpdj0iWC1VQS1Db21wYXRpYmxlIiBjb250ZW50PSJJRT1lZGdlIj4KICAgICAgICA8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEuMCI+CiAgICAgICAgPHRpdGxlPkRvY3VtZW50PC90aXRsZT4KICAgIDwvaGVhZD4KCiAgICA8Ym9keT4KCiAgICA8L2JvZHk+Cgo8L2h0bWw+Cg==',
+      filename: 'index.html',
+      type: 'text/html',
+      disposition: 'attachment'
+    }
+  ],
+  custom_variables: {
+    user_id: '45982',
+    batch_id: 'PSJ-12'
+  },
+  headers: {
+    'X-Message-Source': 'dev.mydomain.com'
+  },
+  subject: 'Your Example Order Confirmation',
+  text: 'Congratulations on your order no. 1234',
+  category: 'API Test'
+});
+
+const xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
+
+xhr.addEventListener('readystatechange', function () {
+  if (this.readyState === this.DONE) {
+    console.log(this.responseText);
+  }
+});
+
+xhr.open('POST', 'https://send.api.mailtrap.io/api/send');
+xhr.setRequestHeader('Content-Type', 'application/json');
+xhr.setRequestHeader('Api-Token', '1d56cbb21d469a101c2a2b9d594414d4');
+
+xhr.send(data);
+
+
+            });
+
+
+    }
+    )
+
+
+
+    const llenarDetallesReserva = (destino, servicio, total, horaSeleccionada) => {
+        document.getElementById("destinoDetalle").value = destino;
+        document.getElementById("servicioDetalle").value = servicio;
+        document.getElementById("totalDetalle").value = total;
+        document.getElementById("horaDetalle").value = horaSeleccionada;
+    };
+
+
+    //verifica si tienen valores válidos y agrega o elimina la clase "is-invalid" 
+    const validarInputs = (inputs) => {
+        inputs.forEach(input => {
+            if (!input.value || input.value === "0") {
+                input.classList.add('is-invalid');
+
+            } else {
+                input.classList.remove('is-invalid');
+            }
+
+
+        });
+    }
+
+
+
+
+
+</script>
