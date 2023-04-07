@@ -11,6 +11,7 @@ $precio = $_POST['precio'];
  
 
 // Conexión a la base de datos
+//$conexion = mysqli_connect("sql903.main-hosting.eu", "prueba", "Pa9:jQ$s$B~M", "u734903000_viajes");
 $conexion = mysqli_connect("localhost", "root", "", "viajes");
 
  // Llamada al procedimiento almacenado para insertar datos en la tabla "usuario" y "viaje"

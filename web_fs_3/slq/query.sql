@@ -1,6 +1,6 @@
 CREATE DATABASE viajes;
 
-use viajes;
+ 
 
 
 CREATE TABLE usuario (
